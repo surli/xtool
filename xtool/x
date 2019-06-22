@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import argparse
 import logging
 
 from xtool.configuration import ConfigManager
@@ -39,4 +38,9 @@ elif ('start'.startswith(args.action)):
     else:
         logger.error('Unable to determine the name of the instance to start.')
 elif ('remove'.startswith(args.action)):
-    im.remove(args.instance_name)
+    if args.instance_name:
+        im.remove(args.instance_name)
+    elif args.version:
+        vm.delete(args.version)
+elif ('clean'.startswith(args.action)):
+    vm.clean()

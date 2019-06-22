@@ -1,4 +1,4 @@
-import logging
+import logging, os
 from packaging import version as Version
 
 from .configuration import ConfigManager
@@ -35,3 +35,15 @@ class VersionManager:
         else:
             # Use the standard version downloader
             VersionDownloader(version, self, self.configManager).download()
+
+    def delete(self, version):
+        os.remove(self.getArchivePath(version))
+
+    def clean(self):
+        instances = self.configManager.instances()
+        versions = self.configManager.versions().copy()
+        for instance in instances:
+            if instance["version"] in versions:
+                versions.remove(instance["version"])
+        for version in versions:
+            self.delete(version)

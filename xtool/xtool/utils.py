@@ -42,6 +42,9 @@ def parse_args():
     startParser.add_argument('-d', '--debug', action='store_true', help='toggle debug mode')
 
     removeParser = subParsers.add_parser('remove', help='remove an entity')
-    removeParser.add_argument('instance_name', help='the name of the instnace to remove')
+    removeParser.add_argument('instance_name', help='the name of the instance to remove')
+    removeParser.add_argument('version', help='the version to remove')
+
+    cleanParser = subParsers.add_parser('clean', help='remove the unused downloaded version')
 
     return rootParser.parse_args()
