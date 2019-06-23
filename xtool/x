@@ -38,8 +38,8 @@ elif ('start'.startswith(args.action)):
     else:
         logger.error('Unable to determine the name of the instance to start.')
 elif ('remove'.startswith(args.action)):
-    if args.instance_name:
-        im.remove(args.instance_name)
+    if args.instance:
+        im.remove(args.instance)
     elif args.version:
         vm.delete(args.version)
 elif ('clean'.startswith(args.action)):
